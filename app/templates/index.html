@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
+
+    <h1>Seu saldo é de R$ {{ balance }}!</h1>
+
+    <table>
+        <tr>
+          <th> Data </th>
+          <th> Operação </th>
+          <th> Valor </th>
+          <th> Descrição </th>
+        </tr>
+        {% for line in account_statement %}
+        <tr>
+          <td>{{ line.timestamp.strftime('%d.%m.%Y') }}</td>
+          {% if line.operation %}
+            <td>Depósito</td>
+          {% else %}
+            <td>Retirada</td>
+          {% endif %}
+          <td>{{ line.ammount }}</td>
+          <td>{{ line.description }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
 {% endblock %}
