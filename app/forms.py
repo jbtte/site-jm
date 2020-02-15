@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DecimalField, DateField, RadioField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
+from datetime import datetime
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -27,3 +28,10 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class ParentInput(FlaskForm):
+    ammount = DecimalField("Valor", validators=[DataRequired()])
+    operation = RadioField(choices=[("1","depósito"), ("0", "retirada")], validators=[DataRequired()])
+    description = StringField('Descrição')
+    timestamp = DateField("Data", format='%d-%m-%Y', default=datetime.utcnow)
+    submit = SubmitField('Confirmar')

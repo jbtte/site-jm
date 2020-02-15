@@ -34,7 +34,7 @@ class Balance(db.Model):
         return deposit - withdraw
 
     def account_statement(user_id):
-        return db.session.query(Balance).filter(Balance.user_id==user_id)
+        return db.session.query(Balance).filter(Balance.user_id==user_id).order_by(Balance.timestamp.desc())
 
 @login.user_loader
 def load_user(id):

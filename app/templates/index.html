@@ -2,9 +2,57 @@
 
 {% block content %}
 
+
+
+{% if current_user.parent %}
+
+
+
+<h1>Oi, {{ current_user.username }}!</h1>
+
+<h1>O saldo do João Marcus é de R$ {{ balance }}!</h1>
+
+<h1>Transação</h1>
+<form action="" method="post" novalidate>
+
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.ammount.label }}<br>
+        {{ form.ammount(size=32) }}<br>
+        {% for error in form.ammount.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.description.label }}<br>
+        {{ form.description(size=32) }}<br>
+        {% for error in form.description.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.timestamp.label }}<br>
+        {{ form.timestamp(size=32) }}<br>
+    </p>
+
+      <p>{% for subfield in form.operation %}
+      <tr>
+          <td>{{ subfield }}</td>
+          <td>{{ subfield.label }}</td>
+      </tr>
+      {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+
+{% else %}
+
 <h1>Oi, {{ current_user.username }}!</h1>
 
 <h1>Seu saldo é de R$ {{ balance }}!</h1>
+
+{% endif %}
 
 <table>
     <tr>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link href='https://fonts.googleapis.com/css?family=Sofia' rel='stylesheet'>
+          <style>
+          body {
+              font-family: 'FF Trixie';
+          }
+          </style>
+        {% block head %}
+        {% endblock %}
+
+    </head>
+
+    <body>
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
