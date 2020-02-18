@@ -40,7 +40,7 @@ dask==0.17.5
 datashape==0.5.4
 decorator==4.3.0
 distributed==1.21.8
-Django==2.0.3
+Django==2.2.10
 django-widget-tweaks==1.4.5
 docutils==0.14
 dominate==2.4.0
