@@ -28,12 +28,12 @@ class Balance(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-    def current_balance(user_id):
-        deposit = db.session.query(func.sum(Balance.ammount)).filter(Balance.user_id==user_id, Balance.operation == True).scalar()
-        withdraw = db.session.query(func.sum(Balance.ammount)).filter(Balance.user_id==user_id, Balance.operation == False).scalar()
+    def current_balance(user_id=2):
+        deposit = db.session.query(func.sum(Balance.ammount)).filter(Balance.user_id==user_id, Balance.operation == 1).scalar()
+        withdraw = db.session.query(func.sum(Balance.ammount)).filter(Balance.user_id==user_id, Balance.operation == 0).scalar()
         return deposit - withdraw
 
-    def account_statement(user_id):
+    def account_statement(user_id=2):
         return db.session.query(Balance).filter(Balance.user_id==user_id).order_by(Balance.timestamp.desc())
 
 @login.user_loader

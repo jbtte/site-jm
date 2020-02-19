@@ -9,8 +9,8 @@ from werkzeug.urls import url_parse
 @app.route('/index', methods = ["GET", "POST"])
 @login_required
 def index():
-    balance = Balance.current_balance(2)
-    account_statement = Balance.account_statement(2)
+    balance = Balance.current_balance(user_id=2)
+    account_statement = Balance.account_statement(user_id=2)
     form = ParentInput()
 
     if form.validate_on_submit():
