@@ -14,7 +14,7 @@ def index():
     form = ParentInput()
 
     if form.validate_on_submit():
-        op = Balance(ammount=int(form.ammount.data), operation=int(form.operation.data), description=form.description.data, timestamp=form.timestamp.data , user_id=2)
+        op = Balance(ammount=float(form.ammount.data), operation=int(form.operation.data), description=form.description.data, timestamp=form.timestamp.data , user_id=2)
         db.session.add(op)
         db.session.commit()
         return redirect(url_for('index'))
