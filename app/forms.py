@@ -31,7 +31,7 @@ class RegistrationForm(FlaskForm):
 
 class ParentInput(FlaskForm):
     ammount = DecimalField("Valor", validators=[DataRequired()])
-    operation = RadioField(choices=[(1,"depósito"), (0, "retirada")], validators=[DataRequired()])
+    operation = RadioField(choices=[("1","depósito"), ("0", "retirada")], validators=[DataRequired()])
     description = StringField('Descrição')
     timestamp = DateField("Data", format='%d-%m-%Y', default=datetime.utcnow)
     submit = SubmitField('Confirmar')
