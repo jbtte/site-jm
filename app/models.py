@@ -23,7 +23,7 @@ class User(UserMixin, db.Model):
 class Balance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ammount = db.Column(db.Float)
-    operation = db.Column(db.Boolean)
+    operation = db.Column(db.Integer)
     description = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
